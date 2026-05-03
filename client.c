@@ -6,18 +6,17 @@
  * CS 392 Spring 2026
  */
 
-#include <stdio.h>
+ #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <errno.h>
-#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/select.h>
 
 void parse_connect(int argc, char **argv, int *server_fd) {
+    //default values
     char *ip_address = "127.0.0.1";
     int port_number = 25555;
 

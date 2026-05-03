@@ -10,7 +10,6 @@
  #include <stdlib.h>
  #include <string.h>
  #include <unistd.h>
- #include <errno.h>
  #include <sys/types.h>
  #include <sys/socket.h>
  #include <netinet/in.h>
@@ -202,14 +201,14 @@
                  close(client_fd);
              } else {
                  printf("New connection detected!\n");
-                 const char *name_prompt = "Please type your name: ";
+                 const char *name_prompt = "Please type your name:\n";
                  send(client_fd, name_prompt, strlen(name_prompt), 0);
                  pending_fds[num_pending++] = client_fd;
              }
          }
  
          /* Check pending clients for their name */
-         for (int i = 0; i < num_pending; i++) {
+         for (int i = 0; i < MAX_PLAYERS; i++) {
              if (pending_fds[i] == -1) continue;
              if (!FD_ISSET(pending_fds[i], &read_fds)) continue;
  
